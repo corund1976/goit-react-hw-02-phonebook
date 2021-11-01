@@ -15,7 +15,7 @@ function Contact({ deleteContact, showFilteredContacts }) {
 };
 
 Contact.propTypes = {
-  onDeleteContact: PropTypes.func.isRequired,
+  deleteContact: PropTypes.func.isRequired,
   showFilteredContacts: PropTypes.func.isRequired,
 };
 
