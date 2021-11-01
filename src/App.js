@@ -68,7 +68,7 @@ class App extends Component {
           <h2>Contacts</h2>
           <Filter
             value={filter}
-            onChange={changeFilter} />
+            changeFilter={changeFilter} />
           <ContactList
             showFilteredContacts={showFilteredContacts}
             deleteContact={deleteContact} />

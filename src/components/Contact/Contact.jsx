@@ -5,7 +5,7 @@ function Contact({ deleteContact, showFilteredContacts }) {
   return (showFilteredContacts().map(contact => {
     return (
       <li key={contact.id} className={s.contactItem}>
-        <p className={s.contact}>•{contact.name}: {contact.number}</p>
+        <p className={s.contact}>• {contact.name}: {contact.number}</p>
         <button className={s.btn} onClick={() => deleteContact(contact.id)}>
           Delete
         </button>

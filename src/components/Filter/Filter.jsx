@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import s from './Filter.module.css';
 
-function Filter({ value, onChange }) {
+function Filter({ value, changeFilter }) {
   return (
     <label className={s.label}>
       Find contacts by name
       <input
         type="text"
         value={value}
-        onChange={onChange}
+        onChange={changeFilter}
         className={s.input}>
       </input>
     </label>
