@@ -47,9 +47,10 @@ class App extends Component {
   // делаем видимыми контакты, которые соответствуют тексту поиска в инпуте
   showFilteredContacts = () => {
     const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+      contact.name.toLowerCase().includes(normalizedFilter) ||
       contact.number.includes(filter),
     );
   };
