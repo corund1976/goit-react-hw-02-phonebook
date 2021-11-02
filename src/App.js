@@ -61,7 +61,8 @@ class App extends Component {
       <Container>
         <Section>
           <h1>Phonebook</h1>
-          <ContactForm onSubmit={addContact} />
+          <ContactForm
+            addContact={addContact} />
         </Section>
         
         <Section>

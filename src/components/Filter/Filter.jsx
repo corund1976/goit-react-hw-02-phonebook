@@ -4,7 +4,7 @@ import s from './Filter.module.css';
 function Filter({ value, changeFilter }) {
   return (
     <label className={s.label}>
-      Find contacts by name
+      Find contacts by name / number
       <input
         type="text"
         value={value}
@@ -17,7 +17,7 @@ function Filter({ value, changeFilter }) {
 
 Filter.propTypes = {
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  changeFilter: PropTypes.func.isRequired,
 };
 
 export default Filter;

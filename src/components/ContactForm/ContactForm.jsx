@@ -1,26 +1,36 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import s from './ContactForm.module.css';
-
+// Выносим объект с примитивами в константу, чтобы было удобно сбрасывать.
+// Нельзя использовать, если в каком-то свойстве состояния хранится сложный тип.
 const INITIAL_STATE = {
   name: '',
   number: '',
 };
 
 class ContactForm extends Component {
+  // в форме стейт нужен только при сабмите, поэтому храним
+  // его в компоненте формы, а при сабмите - отдаем наружу
   state = {
     ...INITIAL_STATE,
   };
-
+  // Для всех инпутов создаем один обработчик
+  // "паттерн ввод данных" ->
   handleInputChange = e => {
+    // подходит для инпутов, у которых есть name and value, 
+    // для радиокнопок, но не чекбоксов
     const { name, value } = e.currentTarget;
-
+    // Различать инпуты будем по атрибуту "name",
+    // применяя вычисляемые свойства объекта
     this.setState({ [name]: value });
   };
 
   handleBtnSubmit = e => {
     e.preventDefault();
-
-    this.props.onSubmit({ ...this.state });
+    // у обьекта this (а это наш class ContactForm) проп, который 
+    // передается при вызове в App - функция addContact. передаем 
+    // ей текущее состояние state при Submitе формы
+    this.props.addContact({ ...this.state });
     this.reset();
   };
 
@@ -33,9 +43,9 @@ class ContactForm extends Component {
     
     return (
       <form
-            onSubmit={this.handleBtnSubmit} 
-            className={s.form} 
-            autoComplete="off">
+        onSubmit={this.handleBtnSubmit} 
+        className={s.form} 
+        autoComplete="off">
         
         <label className={s.label}>
           Name
@@ -72,3 +82,13 @@ class ContactForm extends Component {
 };
 
 export default ContactForm;
+
+ContactForm.propTypes = {
+  addContact: PropTypes.func.isRequired,
+}
+// Проблема обновления состояния - всегда должно быть новое после рендера,  
+// а не мутировать по ссылке старое.
+// Проверка на имутабеольность (равны ли эти значения между рендерами) ->
+// componentDidUpdate(prevProps, prevState) {
+//   console.log(prevState.name === this.state.name);
+// }
