@@ -72,7 +72,7 @@ class App extends Component {
             value={filter}
             changeFilter={changeFilter} />
           <ContactList
-            showFilteredContacts={showFilteredContacts}
+            filteredContacts={showFilteredContacts()}
             deleteContact={deleteContact} />
         </Section>
       </Container>

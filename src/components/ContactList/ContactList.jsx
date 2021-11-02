@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
 import Contact from '../Contact';
 
-function ContactList({ deleteContact, showFilteredContacts }) {
+function ContactList({ deleteContact, filteredContacts }) {
   return (
     <ul className={s.contactList}>
-      {showFilteredContacts().map(({ id, name, number }) => {
+      {filteredContacts.map(({ id, name, number }) => {
         return (
           <Contact
             key={id}
@@ -22,7 +22,8 @@ function ContactList({ deleteContact, showFilteredContacts }) {
 
 ContactList.propTypes = {
   deleteContact: PropTypes.func.isRequired,
-  showFilteredContacts: PropTypes.func.isRequired,
+  filteredContacts: PropTypes.arrayOf(
+    PropTypes.shape()).isRequired,
 };
 
 export default ContactList;
