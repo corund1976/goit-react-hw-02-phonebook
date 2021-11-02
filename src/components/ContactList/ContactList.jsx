@@ -5,10 +5,17 @@ import Contact from '../Contact';
 function ContactList({ deleteContact, showFilteredContacts }) {
   return (
     <ul className={s.contactList}>
-      <Contact
-        showFilteredContacts={showFilteredContacts}
-        deleteContact={deleteContact}>
-      </Contact>
+      {showFilteredContacts().map(({ id, name, number }) => {
+        return (
+          <Contact
+            key={id}
+            deleteContact={deleteContact}
+            id={id}
+            name={name}
+            number={number}>
+          </Contact>
+        );
+      })}
     </ul>
   );
 };
